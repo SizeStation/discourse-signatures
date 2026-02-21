@@ -1,3 +1,7 @@
+.user-signature {
+  opacity: var(--signature-opacity, 0.75);
+}
+
 .user-signature img {
   max-width: calc(100% - 5px);
 }
