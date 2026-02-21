@@ -20,6 +20,11 @@ export default class SignaturePreferences extends Component {
     this.args.model.set("custom_fields.signature_url", event.target.value);
   }
 
+  @action
+  updateSignatureOpacity(event) {
+    this.args.model.set("custom_fields.signature_opacity", event.target.value);
+  }
+
   <template>
     {{#if this.siteSettings.signatures_enabled}}
       <div class="user-custom-preferences-outlet signature-preferences">
@@ -53,6 +58,19 @@ export default class SignaturePreferences extends Component {
                 {{on "input" this.updateSignatureUrl}}
               />
             {{/if}}
+          </div>
+        </div>
+        <div class="control-group signatures">
+          <label class="control-label">{{i18n "signatures.signature_opacity"}}</label>
+          <div class="controls">
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value={{@model.custom_fields.signature_opacity}}
+              {{on "input" this.updateSignatureOpacity}}
+            />
+            {{@model.custom_fields.signature_opacity}}%
           </div>
         </div>
       </div>

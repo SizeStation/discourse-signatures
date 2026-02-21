@@ -12,11 +12,13 @@ enabled_site_setting :signatures_enabled
 DiscoursePluginRegistry.serialized_current_user_fields << "see_signatures"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_url"
 DiscoursePluginRegistry.serialized_current_user_fields << "signature_raw"
+DiscoursePluginRegistry.serialized_current_user_fields << "signature_opacity"
 
 after_initialize do
   register_user_custom_field_type("see_signatures", :boolean)
   register_user_custom_field_type("signature_url", :string, max_length: 32_000)
   register_user_custom_field_type("signature_raw", :string, max_length: 1000)
+  register_user_custom_field_type("signature_opacity", :integer)
 
   # add to class and serializer to allow for default value for the setting
   add_to_class(:user, :see_signatures) do
@@ -27,11 +29,17 @@ after_initialize do
     end
   end
 
+  add_to_class(:user, :signature_opacity) do
+    custom_fields["signature_opacity"] || 100
+  end
+
   add_to_serializer(:user, :see_signatures) { object.see_signatures }
+  add_to_serializer(:user, :signature_opacity) { object.signature_opacity }
 
   register_editable_user_custom_field :see_signatures
   register_editable_user_custom_field :signature_url
   register_editable_user_custom_field :signature_raw
+  register_editable_user_custom_field :signature_opacity
 
   allow_public_user_custom_field :signature_cooked
   allow_public_user_custom_field :signature_url
