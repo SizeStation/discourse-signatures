@@ -8,3 +8,11 @@ plugins:
   signatures_visible_by_default:
     default: false
     client: true
+  signature_default_opacity:
+    default: 60
+    type: integer
+    client: true
+  signature_default_font_size:
+    default: 85
+    type: integer
+    client: true

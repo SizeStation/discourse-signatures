@@ -32,11 +32,11 @@ after_initialize do
   end
 
   add_to_class(:user, :signature_opacity) do
-    custom_fields["signature_opacity"] || 60
+    custom_fields["signature_opacity"] || SiteSetting.signature_default_opacity
   end
 
   add_to_class(:user, :signature_font_size) do
-    custom_fields["signature_font_size"] || 85
+    custom_fields["signature_font_size"] || SiteSetting.signature_default_font_size
   end
 
   add_to_serializer(:user, :see_signatures) { object.see_signatures }

@@ -8,6 +8,14 @@ import { i18n } from "discourse-i18n";
 export default class SignaturePreferences extends Component {
   @service siteSettings;
 
+  get defaultOpacity() {
+    return this.siteSettings.signature_default_opacity;
+  }
+
+  get defaultFontSize() {
+    return this.siteSettings.signature_default_font_size;
+  }
+
   @action
   updateSeeSignatures(event) {
     const model = this.args.model;
@@ -72,10 +80,10 @@ export default class SignaturePreferences extends Component {
               type="range"
               min="0"
               max="100"
-              value={{@model.custom_fields.signature_opacity}}
+              value={{or @model.custom_fields.signature_opacity this.defaultOpacity}}
               {{on "input" this.updateSignatureOpacity}}
             />
-            {{@model.custom_fields.signature_opacity}}%
+            {{or @model.custom_fields.signature_opacity this.defaultOpacity}}%
           </div>
         </div>
         <div class="control-group signatures">
@@ -85,10 +93,10 @@ export default class SignaturePreferences extends Component {
               type="range"
               min="50"
               max="150"
-              value={{@model.custom_fields.signature_font_size}}
+              value={{or @model.custom_fields.signature_font_size this.defaultFontSize}}
               {{on "input" this.updateSignatureFontSize}}
             />
-            {{@model.custom_fields.signature_font_size}}%
+            {{or @model.custom_fields.signature_font_size this.defaultFontSize}}%
           </div>
         </div>
       </div>
