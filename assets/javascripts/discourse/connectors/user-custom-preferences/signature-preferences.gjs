@@ -22,11 +22,14 @@ export default class SignaturePreferences extends Component {
 
   @action
   updateSignatureOpacity(event) {
+    this.args.model.set("signature_opacity", event.target.value);
     this.args.model.set("custom_fields.signature_opacity", event.target.value);
   }
 
+
   @action
   updateSignatureFontSize(event) {
+    this.args.model.set("signature_font_size", event.target.value);
     this.args.model.set("custom_fields.signature_font_size", event.target.value);
   }
 
