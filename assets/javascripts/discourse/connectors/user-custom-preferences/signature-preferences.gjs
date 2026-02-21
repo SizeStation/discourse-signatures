@@ -8,14 +8,6 @@ import { i18n } from "discourse-i18n";
 export default class SignaturePreferences extends Component {
   @service siteSettings;
 
-  get defaultOpacity() {
-    return this.siteSettings.signature_default_opacity;
-  }
-
-  get defaultFontSize() {
-    return this.siteSettings.signature_default_font_size;
-  }
-
   @action
   updateSeeSignatures(event) {
     const model = this.args.model;
@@ -42,9 +34,7 @@ export default class SignaturePreferences extends Component {
     {{#if this.siteSettings.signatures_enabled}}
       <div class="user-custom-preferences-outlet signature-preferences">
         <div class="control-group signatures">
-          <label class="control-label">{{i18n
-              "signatures.enable_signatures"
-            }}</label>
+          <label class="control-label">{{i18n "signatures.enable_signatures"}}</label>
           <div class="controls">
             <label class="checkbox-label">
               <input
@@ -57,9 +47,7 @@ export default class SignaturePreferences extends Component {
           </div>
         </div>
         <div class="control-group signatures">
-          <label class="control-label">{{i18n
-              "signatures.my_signature"
-            }}</label>
+          <label class="control-label">{{i18n "signatures.my_signature"}}</label>
           <div class="controls input-xxlarge">
             {{#if this.siteSettings.signatures_advanced_mode}}
               <DEditor @value={{@model.custom_fields.signature_raw}} />
@@ -80,10 +68,10 @@ export default class SignaturePreferences extends Component {
               type="range"
               min="0"
               max="100"
-              value={{or @model.custom_fields.signature_opacity this.defaultOpacity}}
+              value={{@model.signature_opacity}}
               {{on "input" this.updateSignatureOpacity}}
             />
-            {{or @model.custom_fields.signature_opacity this.defaultOpacity}}%
+            {{@model.signature_opacity}}%
           </div>
         </div>
         <div class="control-group signatures">
@@ -93,10 +81,10 @@ export default class SignaturePreferences extends Component {
               type="range"
               min="50"
               max="150"
-              value={{or @model.custom_fields.signature_font_size this.defaultFontSize}}
+              value={{@model.signature_font_size}}
               {{on "input" this.updateSignatureFontSize}}
             />
-            {{or @model.custom_fields.signature_font_size this.defaultFontSize}}%
+            {{@model.signature_font_size}}%
           </div>
         </div>
       </div>
