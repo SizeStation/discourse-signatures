@@ -25,6 +25,11 @@ export default class SignaturePreferences extends Component {
     this.args.model.set("custom_fields.signature_opacity", event.target.value);
   }
 
+  @action
+  updateSignatureFontSize(event) {
+    this.args.model.set("custom_fields.signature_font_size", event.target.value);
+  }
+
   <template>
     {{#if this.siteSettings.signatures_enabled}}
       <div class="user-custom-preferences-outlet signature-preferences">
@@ -71,6 +76,19 @@ export default class SignaturePreferences extends Component {
               {{on "input" this.updateSignatureOpacity}}
             />
             {{@model.custom_fields.signature_opacity}}%
+          </div>
+        </div>
+        <div class="control-group signatures">
+          <label class="control-label">{{i18n "signatures.signature_font_size"}}</label>
+          <div class="controls">
+            <input
+              type="range"
+              min="50"
+              max="150"
+              value={{@model.custom_fields.signature_font_size}}
+              {{on "input" this.updateSignatureFontSize}}
+            />
+            {{@model.custom_fields.signature_font_size}}%
           </div>
         </div>
       </div>

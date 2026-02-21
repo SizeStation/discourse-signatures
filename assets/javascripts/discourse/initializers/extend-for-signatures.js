@@ -10,12 +10,14 @@ export default {
         api.renderAfterWrapperOutlet("post-content-cooked-html", PostSignature);
         api.addSaveableCustomFields("profile");
 
-        // opacity
+        // opacity & font size
         api.onPageChange(() => {
           const user = api.getCurrentUser();
           if (user) {
             const opacity = (user.custom_fields?.signature_opacity ?? 100) / 100;
+            const fontSize = (user.custom_fields?.signature_font_size ?? 100) / 100;
             document.documentElement.style.setProperty("--signature-opacity", opacity);
+            document.documentElement.style.setProperty("--signature-font-size", fontSize + "rem");
           }
         });
       });

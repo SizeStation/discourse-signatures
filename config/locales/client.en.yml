@@ -6,3 +6,4 @@ en:
       my_signature: "My Signature"
       signature_placeholder: "A valid URL to an image"
       signature_opacity: "Signature opacity"
+      signature_font_size: "Signature Font Size"

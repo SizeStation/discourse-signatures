@@ -1,5 +1,6 @@
 .user-signature {
-  opacity: var(--signature-opacity, 0.75);
+  opacity: var(--signature-opacity, 1);
+  font-size: var(--signature-font-size, 1rem);
 }
 
 .user-signature img {
